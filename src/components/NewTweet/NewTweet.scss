@@ -1,0 +1,66 @@
+.new-tweet {
+  width: 745px;
+  margin-bottom: 20px;
+  .title {
+    span {
+      font-family: "Poppins";
+      font-style: normal;
+      font-weight: 600;
+      font-size: 12px;
+      line-height: 28px;
+      color: #4f4f4f;
+    }
+  }
+
+  .line {
+    border: 1px solid #e0e0e0;
+  }
+  .middle {
+    display: flex;
+    gap: 10px;
+    margin: 10px 0 20px;
+
+    textarea {
+      resize: none;
+      font-family: "Noto Sans";
+      padding: 0.2em;
+      width: 660px;
+      border: none;
+      font-weight: 500;
+      font-size: 17px;
+
+      &:focus {
+        outline: none;
+      }
+    }
+  }
+  .last {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 655px;
+    margin-left: 50px;
+    color: #3f87e4;
+
+    .privacy {
+      display: inline-flex;
+      gap: 2px;
+      align-items: center;
+      padding: 5px 8px;
+      border-radius: 50px;
+      cursor: pointer;
+
+      &:hover {
+        color: #2079ee;
+      }
+
+      span {
+        font-size: 12px;
+      }
+    }
+
+    .story-btn {
+      padding: 7px 22px;
+    }
+  }
+}

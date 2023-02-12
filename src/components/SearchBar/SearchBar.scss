@@ -1,0 +1,46 @@
+.search-bar {
+  width: 745px;
+  border-radius: 8px;
+  margin-bottom: 15px;
+  padding: 10px;
+  display: flex;
+  color: #bdbdbd;
+  justify-content: space-between;
+  .search-icon {
+    display: flex;
+    align-items: center;
+  }
+  .input-field {
+    display: flex;
+    flex: 1;
+
+    input {
+      width: 98%;
+      border: none;
+      padding: 0 10px;
+      font-family: "Noto Sans";
+      font-style: normal;
+      font-weight: 500;
+      font-size: 16px;
+      line-height: 22px;
+      letter-spacing: -0.035em;
+      color: #4f4f4f;
+      &:focus {
+        outline: none;
+      }
+      &::placeholder {
+        color: #bdbdbd;
+      }
+    }
+  }
+  .search-btn {
+    padding: 10px 20px;
+    font-family: "Noto Sans";
+    font-style: normal;
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 16px;
+    letter-spacing: -0.035em;
+    color: #ffffff;
+  }
+}
