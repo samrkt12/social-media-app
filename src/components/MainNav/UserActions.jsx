@@ -7,17 +7,28 @@ import SettingsIcon from "@mui/icons-material/Settings";
 import LogoutIcon from "@mui/icons-material/Logout";
 import Card from "../UI/Card";
 import { activeUser } from "../../Data";
-import { useLogout } from "../../hooks/auth";
+import { useAuth, useLogout } from "../../hooks/auth";
 import { useNavigate } from "react-router-dom";
 
 const UserActions = () => {
   const [isActionsShown, setIsActionsShown] = useState(false);
-  const { initiateLogout, loading } = useLogout();
+  const { user, loading: userLoading } = useAuth();
+  const { initiateLogout, loading: logoutLoading } = useLogout();
   const navigate = useNavigate();
   return (
     <div className="profile">
-      <img src={activeUser.dp} alt="dp" className="sm-img" />
-      <span>{activeUser.name}</span>
+      <img
+        src={
+          !userLoading
+            ? user.displayImg
+              ? user.displayImg
+              : "https://static.vecteezy.com/system/resources/previews/007/407/996/original/user-icon-person-icon-client-symbol-login-head-sign-icon-design-vector.jpg"
+            : ""
+        }
+        alt=""
+        className="sm-img"
+      />
+      <span>{!userLoading ? user.name : "loading..."}</span>
       {isActionsShown ? (
         <ExpandLessIcon
           className="user-action-arrow"

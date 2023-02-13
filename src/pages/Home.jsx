@@ -1,20 +1,21 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { toast } from "react-toastify";
 import NewTweet from "../components/NewTweet/NewTweet";
-import Post from "../components/Post/Post";
+import PostsList from "../components/Post/PostsList";
 import Trends from "../components/Trends/Trends";
 import WhoToFollow from "../components/WhoToFollow/WhoToFollow";
-import { DUMMY_POSTS } from "../Data";
+import { useAuth } from "../hooks/auth";
+import { useGetHomePosts } from "../hooks/posts";
 import "./Home.scss";
 const Home = () => {
+  const { user, loading: userLoading } = useAuth();
+  const { posts, loading: postLoading } = useGetHomePosts(user?.id);
+  if (postLoading) return <p>Loading posts....</p>;
   return (
     <div className="homepage">
       <div className="left">
         <NewTweet className="newtweet-container" />
-        <div className="post-container">
-          {DUMMY_POSTS.map((post) => (
-            <Post key={post.id} post={post} />
-          ))}
-        </div>
+        <PostsList posts={posts} />
       </div>
       <div className="right">
         <Trends className="trend-container" />

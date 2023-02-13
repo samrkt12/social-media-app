@@ -67,7 +67,13 @@ export const useSignup = () => {
       await setDoc(doc(db, "users", res.user.uid), {
         id: res.user.uid,
         name: name,
-        date: Date.now(),
+        userDate: Date.now(),
+        email: email,
+        bio: "Insert Bio here!",
+        displayImg: `https://ui-avatars.com/api/?name=${name}&length=1&background=random`,
+        coverImg: "https://picsum.photos/1100/200",
+        following: [],
+        followers: [],
       });
       toast.success("Account created!");
       navigate("/home");

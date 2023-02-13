@@ -11,7 +11,11 @@ const Profile = () => {
   const [option, setOption] = useState("tweets");
   return (
     <div className="profile-page">
-      <img src={anotherActiveUser.cover} className="bg-cover" alt="cover-pic" />
+      <img
+        src="https://picsum.photos/1100/200"
+        className="bg-cover"
+        alt="cover-pic"
+      />
       <div className="top">
         <ProfileInfo user={anotherActiveUser} />
       </div>

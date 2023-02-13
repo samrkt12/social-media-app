@@ -3,6 +3,10 @@ export const nameValidate = {
     value: true,
     message: "Please enter name",
   },
+  minLength: {
+    value: 2,
+    message: "Name must be at least 2 characters long",
+  },
 };
 
 export const emailValidate = {
