@@ -1,0 +1,23 @@
+.del-container {
+  padding: 5px 7px;
+  color: #eb5757;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  gap: 1px;
+  font-family: "Poppins";
+  font-weight: 500;
+  font-size: 12px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  transition: 0.3s;
+  .del-icon {
+    width: 15px;
+    height: 15px;
+  }
+  &:hover {
+    background: #f5e3e3;
+    color: #d92e2e;
+  }
+}

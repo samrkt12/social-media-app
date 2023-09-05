@@ -1,41 +1,52 @@
 import React from "react";
 import Card from "../UI/Card";
 import "./ProfileInfo.scss";
-import PersonAddIcon from "@mui/icons-material/PersonAdd";
-import Button from "../UI/Button";
+import { useAuth } from "../../hooks/auth";
+import { useToggleFollowUser } from "../../hooks/users";
+import FollowBtn from "../UI/FollowBtn";
 const ProfileInfo = ({ user }) => {
+  const { user: authUser, loading: authLoading } = useAuth();
+  const { displayImg, name, following, followers, bio, id } = user;
+  const isFollowing = followers.includes(authUser?.id);
+  const { toggleFollow, loading: followLoading } = useToggleFollowUser(
+    id,
+    isFollowing,
+    authUser?.id
+  );
   return (
     <Card className="profile-container">
       <div className="left">
         <Card className="profile-img">
-          <img src={user.dp} alt="profilePic" />
+          <img src={displayImg} alt="profilePic" />
         </Card>
         <div className="profile-details">
           <div className="data">
             <div className="name">
-              <p>{user.name}</p>
+              <p>{name}</p>
             </div>
             <div className="fol">
               <p>
-                <span>{user.following}</span>
+                <span>{following.length}</span>
                 Following
               </p>
               <p>
-                <span>{user.followers}</span>
+                <span>{followers.length}</span>
                 Followers
               </p>
             </div>
           </div>
           <div className="bio">
-            <p>{user.bio}</p>
+            <p>{bio}</p>
           </div>
         </div>
       </div>
-      <div className="right">
-        <Button className="follow-btn">
-          <PersonAddIcon className="icon" />
-          <span>Follow</span>
-        </Button>
+      <div>
+        {!authLoading &&
+          (authUser.id === id ? (
+            ""
+          ) : (
+            <FollowBtn onClick={toggleFollow} isFollowing={isFollowing} />
+          ))}
       </div>
     </Card>
   );

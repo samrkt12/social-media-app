@@ -11,7 +11,6 @@ const Options = ({ options, option, setOption }) => {
             key={opt}
             className={`${option === opt ? "active" : ""}`}
             onClick={() => {
-              console.log(opt);
               setOption(opt);
             }}
           >

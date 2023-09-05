@@ -1,16 +1,15 @@
-import React, { useState } from "react";
+import React from "react";
 import ModeCommentOutlinedIcon from "@mui/icons-material/ModeCommentOutlined";
-// import LoopOutlinedIcon from "@mui/icons-material/LoopOutlined";
 import FavoriteBorderOutlinedIcon from "@mui/icons-material/FavoriteBorderOutlined";
 import BookmarkBorderOutlinedIcon from "@mui/icons-material/BookmarkBorderOutlined";
 import FavoriteIcon from "@mui/icons-material/Favorite";
+import BookmarkIcon from "@mui/icons-material/Bookmark";
 import { useAuth } from "../../hooks/auth";
 import { useTogglePostLike, useTogglePostSave } from "../../hooks/posts";
 
 export const LikeAction = ({ post }) => {
   const { user, loading: userLoading } = useAuth();
   const { likes, postID } = post;
-
   const isLiked = likes.includes(user?.id);
   const { togglePostLike, loading } = useTogglePostLike(
     postID,
@@ -58,7 +57,7 @@ export const SaveAction = ({ post }) => {
       className={`item ${isSaved ? "save" : ""}`}
     >
       {isSaved ? (
-        <FavoriteIcon className="action-icon" />
+        <BookmarkIcon className="action-icon" />
       ) : (
         <BookmarkBorderOutlinedIcon className="action-icon" />
       )}
@@ -76,10 +75,6 @@ const PostActions = ({ post }) => {
       </button>
       <LikeAction post={post} />
       <SaveAction post={post} />
-      {/* <button type="button" className={`item ${isActive ? "retweet" : ""}`}>
-        <LoopOutlinedIcon className="action-icon" />
-        <p>{isActive ? "Retweeted" : "Retweet"}</p>
-      </button> */}
     </div>
   );
 };

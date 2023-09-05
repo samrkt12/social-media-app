@@ -1,31 +1,81 @@
-import React from "react";
+import React, { useState } from "react";
 import FavoriteBorderOutlinedIcon from "@mui/icons-material/FavoriteBorderOutlined";
 import { formatDistanceToNow } from "date-fns";
 import { useGetUser } from "../../hooks/users";
+import DeleteBtn from "../UI/DeleteBtn";
+import { useAuth } from "../../hooks/auth";
+import FavoriteIcon from "@mui/icons-material/Favorite";
+import { useDeleteComment, useToggleCommentLike } from "../../hooks/comments";
+import Avatar from "../Avatar/Avatar";
+import AlertOverlay from "../UI/AlertOverlay";
+
+const question = "Are you sure want to delete this comment?";
 
 const Comment = ({ comment }) => {
-  const { userID, commentText, createdAt, commentID } = comment;
+  const [isAlertShown, setIsAlertShown] = useState(false);
+  const { user: authUser, loading: authLoading } = useAuth();
+  const { userID, commentText, createdAt, commentID, likes } = comment;
   const { user, loading: userLoading } = useGetUser(userID);
+  const { deleteComment, loading: deleteLoading } = useDeleteComment();
+
+  const isLiked = likes.includes(authUser?.id);
+  const { toggleCommentLike, loading } = useToggleCommentLike(
+    commentID,
+    isLiked,
+    authUser?.id
+  );
+
+  const showAlert = () => {
+    setIsAlertShown(true);
+  };
+  const hideAlert = () => {
+    setIsAlertShown(false);
+  };
+
+  const deleteCommentHandler = async () => {
+    hideAlert();
+    await deleteComment(commentID);
+  };
+
   if (userLoading) return <p>Loading ...</p>;
+
   return (
     <div className="comment">
-      <img src={user.displayImg} alt="dp" className="sm-img" />
+      {isAlertShown && (
+        <AlertOverlay
+          onHide={hideAlert}
+          onConfirm={deleteCommentHandler}
+          ques={question}
+        />
+      )}
+      <Avatar uid={user.id} image={user.displayImg} className="sm-img" />
       <div className="details">
         <div className="wrapper">
           <div className="comment-profile">
             <p>{user.name}</p>
             <span>{`${formatDistanceToNow(createdAt)} ago`}</span>
+            {!authLoading && authUser.id === userID && (
+              <DeleteBtn onClick={showAlert} />
+            )}
           </div>
           <div className="comment-para">
             <p>{commentText}</p>
           </div>
         </div>
         <div className="data">
-          <div className="data-item like">
-            <FavoriteBorderOutlinedIcon style={{ fontSize: "13px" }} />
-            <p>Like</p>
-          </div>
-          <span>{`${0} Likes`}</span>
+          <button
+            type="button"
+            className={`data-item ${isLiked ? "like" : ""}`}
+            onClick={toggleCommentLike}
+          >
+            {isLiked ? (
+              <FavoriteIcon style={{ fontSize: "13px" }} />
+            ) : (
+              <FavoriteBorderOutlinedIcon style={{ fontSize: "13px" }} />
+            )}
+            <p>{isLiked ? "Liked" : "Like"}</p>
+          </button>
+          <p>{`${likes.length} Likes`}</p>
         </div>
       </div>
     </div>

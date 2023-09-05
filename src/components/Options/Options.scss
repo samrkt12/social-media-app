@@ -1,32 +1,25 @@
+@import "../../variables.scss";
+
 .options {
-  width: 300px;
-  border-radius: 8px;
-  padding: 20px 0;
+  width: 15rem;
+  padding: $base-padding 0;
   ul {
     display: flex;
     flex-direction: column;
-    gap: 15px;
+    gap: $base-padding;
     li {
-      height: 30px;
-      display: flex;
-      align-items: center;
-      line-height: 21px;
-      padding: 0 20px;
+      padding: $base-padding * 0.6 $base-padding;
       p {
-        text-decoration: none;
-        color: #828282;
-        font-family: "Poppins";
-        font-style: normal;
-        font-weight: 500;
-        font-size: 14px;
-        letter-spacing: -0.02em;
+        color: $dark-gray;
+        font-weight: $medium-font-weight;
+        font-size: $base-font-size * 0.9;
         cursor: pointer;
         &.active {
-          color: #2f80ed;
+          color: $blue-primary;
         }
       }
       &.active {
-        border-left: 2px solid #2f80ed;
+        border-left: 3px solid $blue-primary;
       }
     }
   }

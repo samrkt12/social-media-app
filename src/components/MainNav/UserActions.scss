@@ -1,0 +1,74 @@
+@import "../../variables.scss";
+@import "../../index.scss";
+.navbar {
+  .profile {
+    @extend %flex-center;
+    gap: 5px;
+    position: relative;
+
+    span {
+      font-weight: $bold-font-weight;
+      font-size: $base-font-size * 0.8;
+    }
+    .user-action-arrow {
+      cursor: pointer;
+      &:hover {
+        border: 1px solid $light-gray;
+        border-radius: 50%;
+      }
+    }
+    .nav-actions {
+      position: absolute;
+      z-index: 10;
+      padding: 0.2em;
+      top: 3.5rem;
+      right: 0;
+      border-radius: $base-border-radius;
+      width: 8rem;
+      ul {
+        padding: 0.2em;
+        display: flex;
+        gap: 2px;
+        flex-direction: column;
+        li {
+          a {
+            border-radius: $medium-border-radius;
+            text-decoration: none;
+            padding: 0.5em;
+            display: flex;
+            gap: 3px;
+            align-items: center;
+            font-family: $font-family-secondary;
+            font-size: $base-font-size * 0.8;
+            color: $dark-gray;
+            cursor: pointer;
+            transition: all 0.2s ease-out;
+            &:hover {
+              background: $light-gray;
+            }
+          }
+        }
+      }
+      .line {
+        border: 1px solid $light-gray;
+        margin-bottom: 3px;
+      }
+      button {
+        width: 100%;
+        cursor: pointer;
+        background: none;
+        border: none;
+        font-family: $font-family-secondary;
+        color: $red-primary;
+        display: flex;
+        align-items: center;
+        padding: 0.5em 0.9em;
+        border-radius: $medium-border-radius;
+        transition: all 0.2s ease-out;
+        &:hover {
+          background: $red-secondary;
+        }
+      }
+    }
+  }
+}

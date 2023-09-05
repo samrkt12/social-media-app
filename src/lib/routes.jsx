@@ -6,11 +6,16 @@ import Bookmarks from "../pages/Bookmarks";
 import Profile from "../pages/Profile";
 import Auth from "../pages/Auth";
 import Protected from "./Protected";
+import Settings from "../pages/Settings";
 
 export const router = createBrowserRouter([
   {
     path: "/",
-    element: <RootLayout />,
+    element: (
+      <Protected>
+        <RootLayout />
+      </Protected>
+    ),
     children: [
       {
         index: true,
@@ -41,10 +46,18 @@ export const router = createBrowserRouter([
         ),
       },
       {
-        path: "/profile",
+        path: "/profile/:userID",
         element: (
           <Protected>
             <Profile />
+          </Protected>
+        ),
+      },
+      {
+        path: "/settings",
+        element: (
+          <Protected>
+            <Settings />
           </Protected>
         ),
       },

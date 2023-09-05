@@ -3,14 +3,22 @@ import {
   arrayRemove,
   arrayUnion,
   collection,
+  deleteDoc,
   doc,
+  getDoc,
+  getDocs,
   orderBy,
   query,
   setDoc,
   updateDoc,
   where,
 } from "firebase/firestore";
-import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
+import {
+  deleteObject,
+  getDownloadURL,
+  ref,
+  uploadBytes,
+} from "firebase/storage";
 import { useState } from "react";
 import { toast } from "react-toastify";
 import { db, storage } from "../firebase";
@@ -29,7 +37,7 @@ export const useCreatePost = () => {
           await uploadBytes(fileRef, selectedImage);
           postImageURL = await getDownloadURL(fileRef);
         } catch (error) {
-          toast.error("Error uplaoding image");
+          toast.error(error.message);
           setLoading(false);
           return false;
         }
@@ -48,7 +56,7 @@ export const useCreatePost = () => {
       toast.success("Posted !");
     } catch (error) {
       setLoading(false);
-      toast.error("Something went wrong!");
+      toast.error(error.message);
       return false;
     }
     setLoading(false);
@@ -57,20 +65,30 @@ export const useCreatePost = () => {
   return { createPost, loading };
 };
 
-export const useGetHomePosts = (uid) => {
-  const q =
-    // uid
-    //   ? query(
-    //       collection(db, "posts"),
-    //       orderBy("createdAt", "desc"),
-    //       where("userID", "==", uid)
-    //     )
-    //   :
-    query(collection(db, "posts"), orderBy("createdAt", "desc"));
-
-  const [posts, loading, error] = useCollectionData(q);
-  if (error) throw error;
-  return { posts, loading };
+export const useDeletePost = () => {
+  const [loading, setLoading] = useState(false);
+  const deletePost = async (postID) => {
+    setLoading(true);
+    try {
+      const postDoc = await getDoc(doc(db, "posts", postID));
+      await deleteDoc(doc(db, "posts", postID));
+      const q = query(
+        collection(db, "comments"),
+        where("postID", "==", postID)
+      );
+      const snapshot = await getDocs(q);
+      snapshot.forEach(async (doc) => deleteDoc(doc.ref));
+      if (postDoc.data().postImg) {
+        const desertRef = ref(storage, "postImages/" + postID);
+        await deleteObject(desertRef);
+      }
+      toast.success("Post Deleted!");
+    } catch (error) {
+      toast.error(error.message);
+    }
+    setLoading(false);
+  };
+  return { deletePost, loading };
 };
 
 export const useTogglePostLike = (postID, isLiked, uid) => {
@@ -82,8 +100,8 @@ export const useTogglePostLike = (postID, isLiked, uid) => {
       await updateDoc(docRef, {
         likes: isLiked ? arrayRemove(uid) : arrayUnion(uid),
       });
-    } catch {
-      toast.error("No UID");
+    } catch (error) {
+      toast.error(error.message);
     }
     setLoading(false);
   };
@@ -102,8 +120,8 @@ export const useTogglePostSave = (postID, isSaved, uid) => {
       await updateDoc(docRef, {
         saves: isSaved ? arrayRemove(uid) : arrayUnion(uid),
       });
-    } catch {
-      toast.error("Error toggling save!");
+    } catch (error) {
+      toast.error(error.message);
     }
     setLoading(false);
   };
@@ -111,4 +129,33 @@ export const useTogglePostSave = (postID, isSaved, uid) => {
     togglePostSave,
     loading,
   };
+};
+
+export const useGetHomePosts = (uid) => {
+  const q = uid
+    ? query(
+        collection(db, "posts"),
+        orderBy("createdAt", "desc"),
+        where("userID", "==", uid)
+      )
+    : query(collection(db, "posts"), orderBy("createdAt", "desc"));
+
+  const [posts, loading, error] = useCollectionData(q);
+
+  if (error) throw error;
+  return { posts, loading };
+};
+
+export const useGetSavedPosts = (uid) => {
+  const q = uid
+    ? query(
+        collection(db, "posts"),
+        orderBy("createdAt", "desc"),
+        where("saves", "array-contains", uid)
+      )
+    : "";
+  const [posts, loading, error] = useCollectionData(q);
+
+  if (error) throw error;
+  return { posts, loading };
 };

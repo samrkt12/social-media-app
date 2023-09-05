@@ -12,7 +12,7 @@ const Post = ({ post }) => {
   const { comments, loading } = useGetComments(postID);
   return (
     <Card className="post">
-      <PostHeader id={userID} date={createdAt} />
+      <PostHeader uid={userID} date={createdAt} postID={postID} />
       <div className="content">
         <p>{postText}</p>
       </div>

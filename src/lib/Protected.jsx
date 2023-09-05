@@ -6,15 +6,11 @@ function Protected({ children }) {
   const { user, loading } = useAuth();
   const navigate = useNavigate();
   useEffect(() => {
-    if (!user && !loading) {
-      console.log("navigating");
-      navigate("/auth");
-    }
+    if (!user && !loading) navigate("/auth");
   }, [user, loading]);
   if (loading) {
     return <p>Loading...</p>;
   }
-
   return children;
 }
 export default Protected;

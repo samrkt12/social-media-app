@@ -1,35 +1,23 @@
-import React, { useState } from "react";
+import React from "react";
 import ProfileInfo from "../components/ProfileInfo/ProfileInfo";
-import { activeUser, anotherActiveUser } from "../Data";
-import Options from "../components/Options/Options";
-import Post from "../components/Post/Post";
-import { DUMMY_POSTS } from "../Data";
-import "./Profile.scss";
+import { useParams } from "react-router-dom";
+import { useGetUser } from "../hooks/users";
+import PostsList from "../components/Post/PostsList";
+import { useGetHomePosts } from "../hooks/posts";
 
-const options = ["tweets", "tweets & replies", "media", "likes"];
 const Profile = () => {
-  const [option, setOption] = useState("tweets");
+  const { userID } = useParams();
+  const { user, loading: userLoading } = useGetUser(userID);
+  const { posts, loading: postLoading } = useGetHomePosts(userID);
+
   return (
     <div className="profile-page">
-      <img
-        src="https://picsum.photos/1100/200"
-        className="bg-cover"
-        alt="cover-pic"
-      />
-      <div className="top">
-        <ProfileInfo user={anotherActiveUser} />
-      </div>
+      {!userLoading && (
+        <img src={user?.coverImg} className="bg-cover" alt="user-cover-pic" />
+      )}
+      <div className="top">{!userLoading && <ProfileInfo user={user} />}</div>
       <div className="bottom">
-        <div className="left">
-          <Options options={options} option={option} setOption={setOption} />
-        </div>
-        <div className="right">
-          <div className="post-container">
-            {DUMMY_POSTS.map((post) => (
-              <Post key={post.id} post={post} />
-            ))}
-          </div>
-        </div>
+        {!postLoading && <PostsList posts={posts} />}
       </div>
     </div>
   );

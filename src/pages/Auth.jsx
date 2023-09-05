@@ -9,13 +9,15 @@ const Auth = () => {
   const [isLoginPage, setIsLoginPage] = useState(true);
   const { user, loading } = useAuth();
   const navigate = useNavigate();
+
   useEffect(() => {
     if (user && !loading) navigate("/home");
-    console.log(user);
   }, [user, loading]);
+
   if (loading) {
     return <p>Loading...</p>;
   }
+
   return (
     <div className="login-container">
       <div className="image-container">

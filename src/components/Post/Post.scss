@@ -1,230 +1,200 @@
+@import "../../variables.scss";
 .post {
-  width: 745px;
-  margin-bottom: 25px;
-  padding: 20px;
-  border-radius: 8px;
+  width: 46rem;
+  margin-bottom: $base-margin * 1.5;
   .owner {
     display: flex;
     align-items: center;
-    gap: 15px;
-    margin-bottom: 20px;
-    font-weight: 500;
+    gap: 1rem;
+    margin-bottom: $base-margin * 1.2;
+    font-weight: $medium-font-weight;
     .title {
-      p {
-        font-family: "Poppins";
-        font-size: 16px;
-        line-height: 24px;
-        color: #000000;
-      }
-
+      flex: 1;
       span {
-        font-family: "Noto Sans";
-        font-size: 12px;
-        line-height: 16px;
-        letter-spacing: -0.03em;
-        color: #aba9a9;
+        font-family: $font-family-secondary;
+        font-size: $base-font-size * 0.8;
+        color: $medium-gray;
       }
     }
   }
 
   .content {
-    max-width: 550px;
-    margin-bottom: 20px;
+    width: 90%;
+    margin-bottom: $base-margin * 2;
     p {
-      font-family: "Noto Sans";
-      font-weight: 400;
-      font-size: 16px;
-      line-height: 22px;
-      letter-spacing: -0.035em;
-      color: #4f4f4f;
+      font-family: $font-family-secondary;
     }
   }
 
   .image {
-    margin-bottom: 10px;
+    margin-bottom: $base-margin;
+    width: 90%;
     img {
-      width: 100%;
-      max-height: 375px;
-      object-fit: cover;
-      border-radius: 8px;
+      max-width: 100%;
+      max-height: 20rem;
+      height: auto;
+      object-fit: contain;
+      border-radius: $medium-border-radius;
     }
   }
 
   .status {
-    border-bottom: 1px solid #f2f2f2;
+    border-bottom: 1px solid $off-white;
     text-align: end;
-    padding-bottom: 8px;
-    padding-right: 5px;
+    padding-bottom: $base-padding * 0.75;
+    padding-right: $base-padding * 0.5;
     span {
-      font-family: "Noto Sans";
-      font-style: normal;
-      font-weight: 500;
-      font-size: 12px;
-      line-height: 16px;
-      letter-spacing: -0.035em;
-      word-spacing: 2px;
-      color: #bdbdbd;
-      margin-left: 20px;
+      font-family: $font-family-secondary;
+      font-weight: $medium-font-weight;
+      font-size: $base-font-size * 0.8;
+      color: $medium-gray;
+      margin-left: $base-margin * 1.2;
     }
   }
 
   .actions {
     display: flex;
-    justify-content: space-evenly;
     align-items: center;
-    padding: 6px 10px;
-    height: 45px;
-    border-bottom: 1px solid #f2f2f2;
-    margin-bottom: 10px;
+    justify-content: space-evenly;
+    margin: $base-margin * 0.5 0;
     .item {
+      flex: 1;
       display: flex;
       align-items: center;
       justify-content: center;
-      width: 145px;
-      height: 100%;
-      border-radius: 8px;
-      color: #4f4f4f;
+      padding: $base-padding * 0.5 $base-padding * 2;
+      border-radius: $medium-border-radius;
+      color: $dark-gray;
       background: transparent;
       border: none;
-
+      transition: 0.25s;
       .action-icon {
-        font-size: 16px;
+        font-size: $base-font-size;
       }
       p {
-        font-family: "Noto Sans";
-        font-style: normal;
-        font-weight: 500;
-        font-size: 14px;
-        line-height: 19px;
-        letter-spacing: -0.035em;
-        color: #4f4f4f;
+        font-family: $font-family-secondary;
+        font-weight: $medium-font-weight;
+        color: $dark-gray;
         margin-left: 5px;
       }
       &:hover {
-        background: #f2f2f2;
+        background: $off-white;
         cursor: pointer;
       }
     }
-
-    .retweet {
-      color: #27ae60;
-      p {
-        color: #27ae60;
-      }
-    }
-
     .like {
-      color: #eb5757;
+      color: $red-primary;
       p {
-        color: #eb5757;
+        color: $red-primary;
       }
     }
     .save {
       p {
-        color: #2d9cdb;
+        color: $blue-primary;
       }
-      color: #2d9cdb;
+      color: $blue-primary;
     }
   }
 
   .reply {
     display: flex;
-    gap: 15px;
-    border-bottom: 1px solid #f2f2f2;
-    padding-bottom: 10px;
-    margin-bottom: 20px;
+    gap: $base-font-size * 0.8;
+    border-bottom: 1px solid $off-white;
+    padding-bottom: $base-padding * 0.75;
+    margin-bottom: $base-margin * 0.5;
     .field {
       display: flex;
       align-items: center;
-      padding: 0 2px 0 10px;
-      background: #fafafa;
-      border: 1px solid #f2f2f2;
-      border-radius: 8px;
+      justify-content: space-between;
+      padding: 0 $base-padding * 0.5;
+      background: $off-white;
+      border-radius: $medium-border-radius;
       width: 100%;
       gap: 5px;
       .reply-input {
         background: transparent;
-        font-size: 16px;
+        font-size: $base-font-size;
         width: 90%;
-        line-height: 35px;
         border: none;
         &:focus {
           outline: none;
         }
-        &::placeholder {
-          opacity: 0.5;
-        }
       }
       .reply-btn {
-        margin-left: 5px;
         display: flex;
         align-items: center;
         justify-content: center;
-        padding: 5px 4px 5px 8px;
+        padding: 5px 4px 5px 6px;
         border-radius: 50%;
-        font-size: 12px;
       }
     }
   }
   .comments {
     .comment {
       display: flex;
-      gap: 20px;
-      margin-bottom: 20px;
+      gap: $base-padding;
+      margin-bottom: $base-margin;
       .wrapper {
-        background: #fafafa;
-        border-radius: 8px;
+        background: $off-white;
+        border-radius: $medium-border-radius;
         padding: 8px 15px 20px;
-        margin-bottom: 5px;
+        padding: $base-padding * 0.5 $base-padding $base-padding * 1.1;
+        margin-bottom: $base-margin * 0.4;
 
         .comment-profile {
           display: flex;
           align-items: center;
-          gap: 15px;
-          margin-bottom: 10px;
+          gap: $base-padding;
+          margin-bottom: $base-margin * 0.8;
           p {
-            font-family: "Poppins";
-            font-weight: 500;
-            font-size: 16px;
-            line-height: 21px;
-            color: #000000;
-            letter-spacing: -0.035em;
+            font-weight: $medium-font-weight;
           }
           span {
-            font-family: "Noto Sans";
-            font-weight: 500;
-            font-size: 12px;
-            letter-spacing: -0.035em;
-            color: #bdbdbd;
+            font-family: $font-family-secondary;
+            font-size: $base-font-size * 0.8;
+            color: $medium-gray;
           }
         }
         .comment-para {
           p {
-            max-width: 550px;
-            font-family: "Noto Sans";
-            font-style: normal;
-            font-weight: 400;
-            font-size: 16px;
-            line-height: 22px;
-            letter-spacing: -0.035em;
-            color: #4f4f4f;
+            font-family: $font-family-secondary;
+            color: $dark-gray;
           }
         }
       }
       .data {
         display: flex;
-        padding: 0 5px;
-        gap: 15px;
-        color: #bdbdbd;
-        font-size: 13px;
+        padding-left: $base-padding * 0.35;
+        gap: $base-padding * 1.2;
+        color: $medium-gray;
+        font-size: $base-font-size * 0.8;
         .data-item {
           display: flex;
+          align-items: center;
           gap: 3px;
+          color: inherit;
+          background: transparent;
+          border: none;
+          &:hover {
+            cursor: pointer;
+          }
+        }
+        .like {
+          color: $red-primary;
+          p {
+            color: $red-primary;
+          }
         }
       }
       &:last-child {
-        margin-bottom: 0px;
+        margin-bottom: 0;
       }
     }
+  }
+}
+
+@media (max-width: 768px) {
+  .post {
+    width: 96vw;
   }
 }

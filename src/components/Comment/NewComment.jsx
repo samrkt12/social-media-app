@@ -5,6 +5,8 @@ import SendRoundedIcon from "@mui/icons-material/SendRounded";
 import Button from "../UI/Button";
 import { useAuth } from "../../hooks/auth";
 import { useAddComment } from "../../hooks/comments";
+import Avatar from "../Avatar/Avatar";
+import LoadingSpinner from "../UI/LoadingSpinner";
 
 const NewComment = ({ post }) => {
   const {
@@ -14,7 +16,7 @@ const NewComment = ({ post }) => {
     formState: { errors },
   } = useForm();
   const { user, loading: userLoading } = useAuth();
-  const { addComment, loading } = useAddComment();
+  const { addComment, loading: commentLoading } = useAddComment();
   const { postID } = post;
   const newCommentHandler = async (data) => {
     const res = await addComment(postID, user?.id, data);
@@ -23,7 +25,7 @@ const NewComment = ({ post }) => {
   return (
     <div className="reply">
       {!userLoading && (
-        <img src={user.displayImg} alt="dp" className="bg-img" />
+        <Avatar uid={user.id} image={user.displayImg} className="bg-img" />
       )}
       <form className="field" onSubmit={handleSubmit(newCommentHandler)}>
         <input
@@ -34,9 +36,13 @@ const NewComment = ({ post }) => {
           {...register("text", { required: true })}
         />
         {/* comment media */}
-        {!userLoading && !loading && (
+        {!userLoading && (
           <Button className="reply-btn" type="submit">
-            <SendRoundedIcon />
+            {commentLoading ? (
+              <LoadingSpinner w="15px" h="14px" />
+            ) : (
+              <SendRoundedIcon />
+            )}
           </Button>
         )}
       </form>

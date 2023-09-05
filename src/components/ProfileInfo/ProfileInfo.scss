@@ -1,98 +1,60 @@
+@import "../../variables.scss";
+
 .profile-container {
-  width: 1075px;
+  width: 55rem;
   display: flex;
   justify-content: space-between;
-  height: 170px;
   .left {
     display: flex;
     justify-content: center;
     .profile-img {
       position: relative;
       top: -50px;
-      padding: 5px;
-      max-height: 160px;
+      padding: $base-padding * 0.3;
       img {
         width: 150px;
         height: 150px;
         object-fit: cover;
-        border-radius: 8px;
+        border-radius: $medium-border-radius;
       }
     }
     .profile-details {
-      padding: 15px;
-      padding-bottom: 0;
+      padding: $base-padding;
       .data {
-        display: flex;
-        gap: 20px;
-        margin-bottom: 25px;
+        display: flex; //breakpoint here
+        gap: $base-padding * 1.2;
+        margin-bottom: $base-margin;
         .name {
           p {
-            font-family: "Poppins";
-            font-style: normal;
-            font-weight: 600;
-            font-size: 23px;
-            line-height: 36px;
-            letter-spacing: -0.01em;
-            color: #333333;
+            font-weight: $bold-font-weight;
+            font-size: $base-font-size * 1.5;
           }
         }
         .fol {
           display: flex;
           align-items: end;
-          gap: 15px;
-          padding: 6px 0;
+          gap: $base-padding;
+          padding: $base-padding * 0.4 0;
           p {
-            font-family: "Noto Sans";
-            font-style: normal;
-            font-weight: 500;
-            font-size: 11px;
-            line-height: 18px;
-            letter-spacing: -0.035em;
-            color: #828282;
+            font-family: $font-family-secondary;
+            font-weight: $medium-font-weight;
+            font-size: $base-font-size * 0.8;
+            color: $dark-gray;
 
             span {
-              font-family: "Poppins";
-              font-style: normal;
-              font-weight: 600;
-              font-size: 12px;
-              line-height: 18px;
-              letter-spacing: -0.02em;
-              color: #333333;
+              font-weight: $bold-font-weight;
               margin-right: 3px;
             }
           }
         }
       }
       .bio {
-        max-width: 600px;
         p {
-          font-family: "Noto Sans";
-          font-style: normal;
-          font-weight: 500;
-          font-size: 18px;
-          line-height: 28px;
-          letter-spacing: -0.03em;
-          color: #828282;
+          font-family: $font-family-secondary;
+          font-weight: $medium-font-weight;
+          font-size: $base-font-size * 1.1;
+          color: $dark-gray;
         }
-      }
-    }
-  }
-  .right {
-    .follow-btn {
-      display: inline-flex;
-      align-items: center;
-      gap: 4px;
-      padding: 5px 20px;
-      .icon {
-        width: 15px;
-      }
-      span {
-        font-family: "Noto Sans";
-        font-style: normal;
-        font-weight: 500;
-        font-size: 14px;
-        line-height: 16px;
-        letter-spacing: -0.02em;
       }
     }
   }

@@ -1,0 +1,57 @@
+@import "../../variables.scss";
+.user-card-container {
+  width: 46rem;
+  margin-bottom: $base-margin;
+  .first {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: $base-margin;
+    .profile-info {
+      display: flex;
+      align-items: center;
+      gap: $base-padding;
+      .info {
+        p {
+          font-weight: $medium-font-weight;
+        }
+        span {
+          font-family: $medium-font-weight;
+          font-weight: $medium-font-weight;
+          font-size: $base-font-size * 0.8;
+          color: $dark-gray;
+        }
+      }
+    }
+    .follow-btn {
+      gap: 4px;
+      span {
+        font-family: $font-family-secondary;
+        font-size: $base-font-size * 0.8;
+      }
+    }
+    .unfollow-btn {
+      span {
+        font-weight: $medium-font-weight;
+        font-size: $base-font-size * 0.8;
+      }
+    }
+  }
+
+  .second {
+    margin-bottom: 20px;
+    span {
+      font-family: $font-family-secondary;
+      font-size: $base-font-size;
+      color: $dark-gray;
+    }
+  }
+  .third {
+    img {
+      width: 100%;
+      height: 12rem;
+      object-fit: cover;
+      border-radius: $medium-border-radius;
+    }
+  }
+}

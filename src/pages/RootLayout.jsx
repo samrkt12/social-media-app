@@ -8,9 +8,8 @@ const RootLayout = () => {
       <main>
         <Outlet />
       </main>
-      <footer style={{ textAlign: "center", margin: "25px 0" }}>
-        created by Sam
-      </footer>
+
+      <footer style={{ textAlign: "center" }}>created by Sam</footer>
     </>
   );
 };

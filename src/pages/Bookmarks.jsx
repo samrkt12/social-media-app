@@ -1,25 +1,15 @@
-import React, { useEffect, useState } from "react";
-import Options from "../components/Options/Options";
-import Post from "../components/Post/Post";
-import { DUMMY_POSTS } from "../Data";
-import "./Bookmarks.scss";
-const options = ["tweets", "tweets & replies", "media", "likes"];
+import React from "react";
+import PostsList from "../components/Post/PostsList";
+import { useAuth } from "../hooks/auth";
+import { useGetSavedPosts } from "../hooks/posts";
 
 const Bookmarks = () => {
-  const [option, setOption] = useState("tweets");
-
+  const { user, loading: userLoading } = useAuth();
+  const { posts, loading: postLoading } = useGetSavedPosts(user?.id);
+  if (userLoading) return <p>Loading user...</p>;
   return (
     <div className="bookmarks">
-      <div className="left">
-        <Options options={options} option={option} setOption={setOption} />
-      </div>
-      <div className="right">
-        <div className="post-container">
-          {DUMMY_POSTS.map((post) => (
-            <Post key={post.id} post={post} />
-          ))}
-        </div>
-      </div>
+      {postLoading ? <p>Loading posts....</p> : <PostsList posts={posts} />}
     </div>
   );
 };

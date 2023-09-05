@@ -7,6 +7,8 @@ import {
   nameValidate,
   passwordValidate,
 } from "../../utils/form-validate";
+import AuthBtn from "../UI/AuthBtn";
+
 const SignupForm = ({ setIsLoginPage }) => {
   const {
     register,
@@ -63,15 +65,12 @@ const SignupForm = ({ setIsLoginPage }) => {
             Password
           </label>
         </div>
-        <div
-          className="remember-me-container"
-          style={{ justifyContent: "end", marginTop: "10px" }}
-        >
-          <button type="submit">Sign Up</button>
-        </div>
+        {loading ? (
+          <AuthBtn active disabled text="Signup" />
+        ) : (
+          <AuthBtn text="Signup" />
+        )}
       </form>
-      <p>or continue with</p>
-      <AuthProviders />
       <div className="change-mode">
         <p>Already a member?</p>
         <button type="button" onClick={() => setIsLoginPage((prev) => !prev)}>

@@ -1,0 +1,51 @@
+.alert-overlay {
+  position: fixed;
+  top: 40%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 25px 30px;
+  width: 400px;
+  background-color: white;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
+  z-index: 99;
+  display: flex;
+  gap: 20px;
+  flex-direction: column;
+  align-items: center;
+  .alert-ques {
+    text-align: center;
+    h1 {
+      font-size: 21px;
+      cursor: default;
+      font-weight: 500;
+      line-height: 28px;
+      letter-spacing: -0.035em;
+      color: #000000;
+    }
+  }
+  .alert-options {
+    display: flex;
+    align-items: center;
+    gap: 40px;
+    button {
+      border: none;
+      border-radius: 8px;
+      font-size: 20px;
+      color: white;
+      padding: 10px 30px;
+      cursor: pointer;
+      transition: 0.22s;
+      &:hover {
+        opacity: 0.95;
+        transform: scale(1.03);
+      }
+    }
+    .yes-option {
+      background: #2079ee;
+    }
+    .no-option {
+      background-color: #d62828;
+    }
+  }
+}

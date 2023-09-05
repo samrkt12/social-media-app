@@ -1,26 +1,30 @@
 import React, { useState } from "react";
 import Options from "../components/Options/Options";
 import SearchBar from "../components/SearchBar/SearchBar";
-import Post from "../components/Post/Post";
-import { DUMMY_POSTS } from "../Data";
-import "./Explore.scss";
 
-const options = ["top", "latest", "people", "media"];
+import PostsList from "../components/Post/PostsList";
+import { useGetHomePosts } from "../hooks/posts";
+import UserCardsList from "../components/UserCard/UserCardsList";
+
+const options = ["top", "latest", "people"];
 
 const Explore = () => {
-  const [option, setOption] = useState("top");
+  const [filter, setFilter] = useState("latest");
+  const { posts, loading: postLoading } = useGetHomePosts();
   return (
     <div className="explore">
-      <div className="left">
-        <Options options={options} option={option} setOption={setOption} />
+      <div>
+        <Options options={options} option={filter} setOption={setFilter} />
       </div>
-      <div className="right">
+      <div>
         <SearchBar />
-        <div className="post-container">
-          {DUMMY_POSTS.map((post) => (
-            <Post key={post.id} post={post} />
-          ))}
-        </div>
+        {filter === "people" ? (
+          <UserCardsList />
+        ) : postLoading ? (
+          <p>Loading posts....</p>
+        ) : (
+          <PostsList posts={posts} />
+        )}
       </div>
     </div>
   );

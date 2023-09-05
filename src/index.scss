@@ -1,0 +1,99 @@
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;500;600&display=swap");
+@import "variables";
+
+%flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+%flex-column-center {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html,
+body {
+  font-family: $font-family-primary;
+  min-height: 100vh;
+  background: $off-white;
+}
+
+li {
+  list-style: none;
+}
+
+.bg-img {
+  @extend %flex-center;
+  width: 40px;
+  height: 40px;
+  object-fit: cover;
+  border-radius: 10px;
+  cursor: pointer;
+}
+.sm-img {
+  @extend %flex-center;
+  width: 35px;
+  height: 35px;
+  object-fit: cover;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.homepage {
+  @extend %flex-column-center;
+  gap: 1rem;
+  margin-top: 1rem;
+  padding: 0 1em;
+}
+
+.post-container {
+  @extend %flex-column-center;
+}
+
+.bookmarks {
+  margin: $base-margin auto 0;
+}
+
+.explore {
+  display: flex;
+  // flex-direction: column;
+  // align-items: center;
+  gap: $base-padding;
+  justify-content: center;
+  margin-top: $base-margin;
+}
+
+.profile-page {
+  display: flex;
+  position: relative;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem;
+
+  .bg-cover {
+    position: absolute;
+    width: 100%;
+    max-height: 20rem;
+    height: auto;
+    top: 0px;
+    left: 0px;
+    object-fit: cover;
+  }
+  .top {
+    margin-top: 12rem;
+    z-index: 5;
+  }
+}
+
+.settings-page {
+  @extend %flex-column-center;
+}
