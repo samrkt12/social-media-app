@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import Options from "../components/Options/Options";
 import SearchBar from "../components/SearchBar/SearchBar";
-
 import PostsList from "../components/Post/PostsList";
 import { useGetHomePosts } from "../hooks/posts";
 import UserCardsList from "../components/UserCard/UserCardsList";
@@ -10,7 +9,7 @@ const options = ["top", "latest", "people"];
 
 const Explore = () => {
   const [filter, setFilter] = useState("latest");
-  const { posts, loading: postLoading } = useGetHomePosts();
+  const { posts, loading: postLoading } = useGetHomePosts(null, filter);
   return (
     <div className="explore">
       <div>

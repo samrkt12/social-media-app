@@ -47,11 +47,11 @@ export const useCreatePost = () => {
         userID: uid,
         postText: post.text,
         blockPost: false,
-        privacy: post.privacy,
         createdAt: Date.now(),
         postImg: postImageURL ? postImageURL : "",
         likes: [],
         saves: [],
+        likeCount: 0,
       });
       toast.success("Posted !");
     } catch (error) {
@@ -97,9 +97,17 @@ export const useTogglePostLike = (postID, isLiked, uid) => {
     setLoading(true);
     const docRef = doc(db, "posts", postID);
     try {
-      await updateDoc(docRef, {
-        likes: isLiked ? arrayRemove(uid) : arrayUnion(uid),
-      });
+      const postDoc = await getDoc(docRef);
+      if (postDoc.exists()) {
+        const postData = postDoc.data();
+        const newLikeCount = isLiked
+          ? postData.likeCount - 1
+          : postData.likeCount + 1;
+        await updateDoc(docRef, {
+          likes: isLiked ? arrayRemove(uid) : arrayUnion(uid),
+          likeCount: newLikeCount,
+        });
+      }
     } catch (error) {
       toast.error(error.message);
     }
@@ -131,14 +139,24 @@ export const useTogglePostSave = (postID, isSaved, uid) => {
   };
 };
 
-export const useGetHomePosts = (uid) => {
-  const q = uid
-    ? query(
-        collection(db, "posts"),
-        orderBy("createdAt", "desc"),
-        where("userID", "==", uid)
-      )
-    : query(collection(db, "posts"), orderBy("createdAt", "desc"));
+export const useGetHomePosts = (uid, filter) => {
+  const baseQuery = query(
+    collection(db, "posts"),
+    orderBy("createdAt", "desc")
+  );
+
+  let q;
+  if (filter === "latest") {
+    q = baseQuery;
+  } else if (filter === "top") {
+    q = query(collection(db, "posts"), orderBy("likeCount", "desc"));
+  } else {
+    q = baseQuery;
+  }
+
+  if (uid) {
+    q = query(q, where("userID", "==", uid));
+  }
 
   const [posts, loading, error] = useCollectionData(q);
 
