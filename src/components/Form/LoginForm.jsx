@@ -7,7 +7,12 @@ import AuthBtn from "../UI/AuthBtn";
 
 const LoginForm = ({ setIsLoginPage }) => {
   const { initiateLogin, loading } = useLogin();
-  const { register, handleSubmit, reset } = useForm();
+  const {
+    register,
+    handleSubmit,
+    reset,
+    formState: { errors },
+  } = useForm();
 
   const { signInWithGoogle, loading: googleLoading } = useSignInWithGoogle();
 
@@ -29,26 +34,29 @@ const LoginForm = ({ setIsLoginPage }) => {
             type="email"
             name="email"
             placeholder=""
-            className="input"
             {...register("email", emailValidate)}
           />
           <label htmlFor="email" className="label">
             Email
           </label>
         </div>
+        {errors.email && (
+          <p className="error-message">{errors.email.message}</p>
+        )}
         <div className="form-field">
           <input
             type="password"
             name="pwd"
             placeholder=""
-            className="input"
             {...register("password", passwordValidate)}
           />
           <label htmlFor="pwd" className="label">
             Password
           </label>
         </div>
-        {/* <p>Password must be 6 characters long</p> */}
+        {errors.password && (
+          <p className="error-message">{errors.password.message}</p>
+        )}
         {loading || googleLoading ? (
           <AuthBtn active disabled text="Login" />
         ) : (

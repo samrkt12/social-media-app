@@ -9,7 +9,7 @@ const RootLayout = () => {
         <Outlet />
       </main>
 
-      <footer style={{ textAlign: "center" }}>created by Sam</footer>
+      {/* <footer style={{ textAlign: "center" }}>created by Sam</footer> */}
     </>
   );
 };

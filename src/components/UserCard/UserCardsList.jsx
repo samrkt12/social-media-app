@@ -1,14 +1,25 @@
 import React from "react";
-import { useGetAllUsers } from "../../hooks/users";
 import UserCard from "./UserCard";
-
-const UserCardsList = () => {
-  const { users, loading } = useGetAllUsers();
+import Card from "../UI/Card";
+const UserCardsList = ({ users, loading, emptyText }) => {
   if (loading) return <p>loading</p>;
   return (
-    <div>
+    <div className="users-container">
       {users?.length === 0 ? (
-        <p>No Users</p>
+        <Card className="user-card-container">
+          <p
+            style={{
+              textAlign: "center",
+              margin: "2.25rem auto",
+              padding: "0 10px",
+              color: "#333",
+              maxWidth: "50ch",
+              textShadow: "0px 2px 4px rgba(0, 0, 0, 0.2)",
+            }}
+          >
+            {emptyText ? emptyText : `No users.`}
+          </p>
+        </Card>
       ) : (
         users?.map((user) => <UserCard key={user.id} user={user} />)
       )}

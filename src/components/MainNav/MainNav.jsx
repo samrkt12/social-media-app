@@ -1,15 +1,31 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
-import logo from "../../assets/tweeter.svg";
+import bigLogo from "../../assets/tweeter.svg";
+import smallLogo from "../../assets/tweeter-small.svg";
 import "./MainNav.scss";
 import UserActions from "./UserActions";
 
 const MainNav = () => {
+  const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setWindowWidth(window.innerWidth);
+    };
+
+    window.addEventListener("resize", handleResize);
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
+
+  const isNarrowScreen = windowWidth <= 768;
+
   return (
     <header className="header">
       <nav className="navbar">
         <div className="logo">
-          <img src={logo} alt="tweeter-logo" />
+          <img src={isNarrowScreen ? smallLogo : bigLogo} alt="tweeter-logo" />
         </div>
         <ul className="list">
           <li>

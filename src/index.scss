@@ -25,6 +25,11 @@ body {
   font-family: $font-family-primary;
   min-height: 100vh;
   background: $off-white;
+  overflow-x: hidden;
+}
+
+#root {
+  min-height: 100vh;
 }
 
 li {
@@ -52,24 +57,40 @@ li {
   @extend %flex-column-center;
   gap: 1rem;
   margin-top: 1rem;
-  padding: 0 1em;
+  padding: 0 0.8rem;
 }
 
 .post-container {
   @extend %flex-column-center;
+  width: 100%;
+}
+.users-container {
+  @extend %flex-column-center;
+  width: 100%;
 }
 
 .bookmarks {
-  margin: $base-margin auto 0;
+  padding: 0.8rem;
 }
 
 .explore {
-  display: flex;
-  // flex-direction: column;
-  // align-items: center;
-  gap: $base-padding;
+  display: grid;
+  grid-template-columns: auto auto;
   justify-content: center;
   margin-top: $base-margin;
+  gap: 10px;
+  width: 100%;
+  .component1 {
+    align-self: start;
+    grid-column: 1;
+  }
+  .component2 {
+    grid-column: 2;
+  }
+
+  .component3 {
+    grid-column: 2;
+  }
 }
 
 .profile-page {
@@ -96,4 +117,39 @@ li {
 
 .settings-page {
   @extend %flex-column-center;
+}
+
+//Media Query
+@media (max-width:  #{get-breakpoint(lg)}) {
+  .explore {
+    display: flex;
+    padding: 0 0.8rem;
+    gap: $base-padding;
+    justify-content: center;
+    margin-top: $base-margin;
+    flex-direction: column;
+    align-items: center;
+    // justify-content: center;
+    margin-top: $base-margin;
+  }
+}
+
+@media (max-width:  #{get-breakpoint(sm)}) {
+}
+
+@media (max-width:  #{get-breakpoint(xs)}) {
+  .homepage {
+    padding: 0 0.6rem;
+  }
+  .bookmarks {
+    padding: 0.8rem 0.6rem;
+  }
+  .bg-img {
+    width: 36px;
+    height: 36px;
+  }
+  .sm-img {
+    width: 32px;
+    height: 32px;
+  }
 }

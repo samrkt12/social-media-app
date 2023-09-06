@@ -23,6 +23,7 @@
     margin-bottom: $base-margin * 2;
     p {
       font-family: $font-family-secondary;
+      white-space: pre-line;
     }
   }
 
@@ -193,8 +194,151 @@
   }
 }
 
-@media (max-width: 768px) {
+// Media query
+@media (max-width:  #{get-breakpoint(sm)}) {
   .post {
-    width: 96vw;
+    width: 100%;
+    .owner {
+      margin-bottom: $base-margin;
+      gap: 14px;
+      .title {
+        font-size: $medium-font-size;
+        span {
+          font-size: $medium-font-size * 0.8;
+        }
+      }
+    }
+    .content {
+      p {
+        font-size: $medium-font-size;
+      }
+    }
+    .image {
+      img {
+        max-height: 18rem;
+      }
+    }
+    .status {
+      span {
+        font-size: $medium-font-size * 0.8;
+      }
+    }
+    .reply {
+      gap: $small-font-size * 0.8;
+      .field {
+        .reply-input {
+          font-size: $medium-font-size;
+        }
+        .reply-btn {
+          padding: 4px 3px 4px 5px;
+          border-radius: 50%;
+        }
+      }
+    }
+    .comments {
+      .comment {
+        gap: $base-padding * 0.8;
+        margin-bottom: $base-margin * 0.9;
+        .wrapper {
+          padding: $base-padding * 0.4 $base-padding * 0.8 $base-padding * 0.8;
+          .comment-profile {
+            p {
+              font-size: $medium-font-size;
+            }
+            span {
+              font-size: $medium-font-size * 0.8;
+            }
+          }
+          .comment-para {
+            p {
+              font-size: $medium-font-size;
+            }
+          }
+        }
+        .data {
+          font-size: $medium-font-size * 0.85;
+        }
+      }
+    }
+  }
+}
+
+@media (max-width:  #{get-breakpoint(xs)}) {
+  .post {
+    width: 100%;
+    padding: 12px 10px;
+    .owner {
+      gap: 10px;
+    }
+    .content {
+      width: 100%;
+      p {
+        font-size: $medium-font-size * 0.95;
+      }
+    }
+
+    .image {
+      width: 100%;
+      img {
+        max-height: 15rem;
+      }
+    }
+
+    .actions {
+      .item {
+        padding: $base-padding * 0.5 $base-padding * 1;
+        .action-icon {
+          font-size: $medium-font-size;
+        }
+        p {
+          font-size: $small-font-size;
+        }
+      }
+    }
+
+    .reply {
+      gap: $small-font-size * 0.6;
+      .field {
+        .reply-input {
+          font-size: $small-font-size;
+        }
+        .reply-btn {
+          padding: 3px 2px 3px 4px;
+        }
+      }
+    }
+    .comments {
+      .comment {
+        margin-bottom: $base-margin * 0.9;
+        gap: $base-margin * 0.5;
+        .wrapper {
+          padding: $base-padding * 0.35 $base-padding * 0.6 $base-padding * 0.7;
+
+          .comment-profile {
+            gap: $base-padding * 0.9;
+            margin-bottom: $base-margin * 0.7;
+            p {
+              font-size: $small-font-size;
+            }
+            span {
+              font-size: $small-font-size * 0.8;
+            }
+          }
+          .comment-para {
+            p {
+              font-size: $small-font-size;
+            }
+          }
+        }
+        .data {
+          button {
+            p {
+              font-size: $medium-font-size * 0.85;
+            }
+          }
+          font-size: $small-font-size * 0.9;
+        }
+      }
+    }
   }
 }

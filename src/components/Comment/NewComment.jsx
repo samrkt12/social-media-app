@@ -1,6 +1,5 @@
 import React from "react";
 import { useForm } from "react-hook-form";
-// import ImageOutlinedIcon from "@mui/icons-material/ImageOutlined";
 import SendRoundedIcon from "@mui/icons-material/SendRounded";
 import Button from "../UI/Button";
 import { useAuth } from "../../hooks/auth";
@@ -9,15 +8,11 @@ import Avatar from "../Avatar/Avatar";
 import LoadingSpinner from "../UI/LoadingSpinner";
 
 const NewComment = ({ post }) => {
-  const {
-    register,
-    handleSubmit,
-    reset,
-    formState: { errors },
-  } = useForm();
+  const { register, handleSubmit, reset } = useForm();
   const { user, loading: userLoading } = useAuth();
   const { addComment, loading: commentLoading } = useAddComment();
   const { postID } = post;
+
   const newCommentHandler = async (data) => {
     const res = await addComment(postID, user?.id, data);
     if (res) reset();
@@ -35,7 +30,6 @@ const NewComment = ({ post }) => {
           autoComplete="off"
           {...register("text", { required: true })}
         />
-        {/* comment media */}
         {!userLoading && (
           <Button className="reply-btn" type="submit">
             {commentLoading ? (

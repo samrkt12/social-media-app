@@ -12,21 +12,46 @@
     display: flex;
     flex: 1;
     input {
-      width: 98%;
+      width: 100%;
       border: none;
       padding: 0 $base-padding * 0.75;
       font-family: $font-family-secondary;
       font-weight: $medium-font-weight;
-      font-size: $base-font-size;
+      font-size: $base-font-size * 1.2;
       &:focus {
         outline: none;
       }
       &::placeholder {
-        color: $dark-gray;
+        color: #999;
+      }
+    }
+    .clear {
+      cursor: pointer;
+      border-radius: 50%;
+      background: $red-secondary;
+      display: flex;
+      color: $red-primary;
+    }
+  }
+}
+
+@media (max-width:  #{get-breakpoint(lg)}) {
+  .search-bar {
+    width: 100%;
+    .input-field {
+      input {
+        font-size: $base-font-size;
       }
     }
   }
-  .search-btn {
-    padding: $base-padding * 0.75 $base-padding * 1.5;
+}
+
+@media (max-width:  #{get-breakpoint(sm)}) {
+  .search-bar {
+    .input-field {
+      input {
+        font-size: $medium-font-size;
+      }
+    }
   }
 }

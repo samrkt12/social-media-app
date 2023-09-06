@@ -1,10 +1,11 @@
+@import "../../variables.scss";
 .alert-overlay {
   position: fixed;
   top: 40%;
   left: 50%;
   transform: translate(-50%, -50%);
-  padding: 25px 30px;
-  width: 25rem;
+  padding: 16px;
+  width: 24rem;
   background-color: white;
   border-radius: 12px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
@@ -16,11 +17,9 @@
   .alert-ques {
     text-align: center;
     h1 {
-      font-size: 21px;
+      font-size: 18px;
       cursor: default;
       font-weight: 500;
-      line-height: 28px;
-      letter-spacing: -0.035em;
       color: #000000;
     }
   }
@@ -31,21 +30,65 @@
     button {
       border: none;
       border-radius: 8px;
-      font-size: 20px;
+      font-size: 18px;
       color: white;
-      padding: 10px 30px;
+      padding: 10px 25px;
       cursor: pointer;
       transition: 0.22s;
+      opacity: 0.9;
       &:hover {
-        opacity: 0.95;
-        transform: scale(1.03);
+        opacity: 1;
       }
     }
     .yes-option {
-      background: #2079ee;
+      background: $blue-primary;
     }
     .no-option {
-      background-color: #d62828;
+      background-color: $red-primary;
+    }
+  }
+}
+
+@media (max-width:  #{get-breakpoint(sm)}) {
+  .alert-overlay {
+    position: fixed;
+    top: 45%;
+    padding: 15px 10px;
+    width: 20rem;
+    gap: 16px;
+    .alert-ques {
+      text-align: center;
+      h1 {
+        font-size: 16px;
+      }
+    }
+    .alert-options {
+      gap: 35px;
+      button {
+        font-size: 16px;
+        padding: 8px 22px;
+      }
+    }
+  }
+}
+
+@media (max-width:  #{get-breakpoint(xs)}) {
+  .alert-overlay {
+    padding: 12px 12px;
+    width: 16rem;
+    gap: 16px;
+    .alert-ques {
+      text-align: center;
+      h1 {
+        font-size: 14px;
+      }
+    }
+    .alert-options {
+      gap: 30px;
+      button {
+        font-size: 13px;
+        padding: 8px 20px;
+      }
     }
   }
 }

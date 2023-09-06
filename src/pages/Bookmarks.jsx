@@ -9,7 +9,14 @@ const Bookmarks = () => {
   if (userLoading) return <p>Loading user...</p>;
   return (
     <div className="bookmarks">
-      {postLoading ? <p>Loading posts....</p> : <PostsList posts={posts} />}
+      {postLoading ? (
+        <p>Loading posts....</p>
+      ) : (
+        <PostsList
+          posts={posts}
+          emptyText="Your bookmarks are not playing hide and seek. Start saving posts to see them here📚"
+        />
+      )}
     </div>
   );
 };

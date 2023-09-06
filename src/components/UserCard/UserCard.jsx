@@ -14,6 +14,11 @@ const UserCard = ({ user }) => {
     isFollowing,
     authUser?.id
   );
+
+  const coverImgSmall = `${coverImg}?w=300`;
+  const coverImgMedium = `${coverImg}?w=600`;
+  const coverImgLarge = coverImg;
+
   return (
     <Card className="user-card-container">
       <div className="first">
@@ -32,7 +37,13 @@ const UserCard = ({ user }) => {
         <span>{bio}</span>
       </div>
       <div className="third">
-        <img src={coverImg} alt="cover-pic" />
+        <img
+          src={coverImgSmall}
+          srcSet={`${coverImgSmall} 300w, ${coverImgMedium} 600w, ${coverImgLarge} 1200w`}
+          sizes="(max-width: 600px) 100vw, 50vw"
+          alt={`${name}-cover-pic`}
+          loading="lazy"
+        />
       </div>
     </Card>
   );

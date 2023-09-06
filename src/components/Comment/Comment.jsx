@@ -53,7 +53,11 @@ const Comment = ({ comment }) => {
         <div className="wrapper">
           <div className="comment-profile">
             <p>{user.name}</p>
-            <span>{`${formatDistanceToNow(createdAt)} ago`}</span>
+            <span>
+              {formatDistanceToNow(createdAt) === "less than a minute"
+                ? "just now"
+                : `${formatDistanceToNow(createdAt)} ago`}
+            </span>
             {!authLoading && authUser.id === userID && (
               <DeleteBtn onClick={showAlert} />
             )}

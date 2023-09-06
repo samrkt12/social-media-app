@@ -10,6 +10,10 @@ import { useGetComments } from "../../hooks/comments";
 const Post = ({ post }) => {
   const { userID, createdAt, postText, postImg, likes, saves, postID } = post;
   const { comments, loading } = useGetComments(postID);
+  const smallImage = `${postImg}?w=300`;
+  const mediumImage = `${postImg}?w=600`;
+  const largeImage = postImg;
+
   return (
     <Card className="post">
       <PostHeader uid={userID} date={createdAt} postID={postID} />
@@ -18,7 +22,13 @@ const Post = ({ post }) => {
       </div>
       {postImg && (
         <div className="image">
-          <img src={postImg} alt="post-image" />
+          <img
+            src={smallImage}
+            alt="post-image"
+            srcSet={`${smallImage} 300w, ${mediumImage} 600w, ${largeImage} 1200w`}
+            sizes="(max-width: 600px) 100vw, 50vw"
+            loading="lazy"
+          />
         </div>
       )}
       <div className="status">

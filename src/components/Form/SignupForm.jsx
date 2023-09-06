@@ -32,39 +32,43 @@ const SignupForm = ({ setIsLoginPage }) => {
         <div className="form-field">
           <input
             type="text"
-            name="userName"
+            name="name"
             placeholder=""
-            // autoComplete="name"
             {...register("name", nameValidate)}
           />
-          <label htmlFor="email" className="label">
+          <label htmlFor="name" className="label">
             Name
           </label>
         </div>
+        {errors.name && <p className="error-message">{errors.name.message}</p>}
         <div className="form-field">
           <input
             type="email"
             name="email"
             placeholder=""
-            // autoComplete="email"
             {...register("email", emailValidate)}
           />
           <label htmlFor="email" className="label">
             Email
           </label>
         </div>
+        {errors.email && (
+          <p className="error-message">{errors.email.message}</p>
+        )}
         <div className="form-field">
           <input
             type="password"
-            name="pwd"
+            name="password"
             placeholder=""
-            // autoComplete="new-password"
             {...register("password", passwordValidate)}
           />
-          <label htmlFor="pwd" className="label">
+          <label htmlFor="password" className="label">
             Password
           </label>
         </div>
+        {errors.password && (
+          <p className="error-message">{errors.password.message}</p>
+        )}
         {loading ? (
           <AuthBtn active disabled text="Signup" />
         ) : (

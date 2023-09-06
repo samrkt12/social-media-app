@@ -24,3 +24,34 @@
     }
   }
 }
+
+@media (max-width:  #{get-breakpoint(lg)}) {
+  .options {
+    width: 100%;
+    padding: 0;
+    ul {
+      flex-direction: row;
+      justify-content: space-evenly;
+      gap: 0;
+      li {
+        padding: $base-padding * 0.8 $base-padding;
+        p {
+          color: $dark-gray;
+          font-weight: $medium-font-weight;
+          font-size: $base-font-size * 0.9;
+          cursor: pointer;
+          &.active {
+            color: $blue-primary;
+          }
+        }
+        &.active {
+          border: 0;
+          border-bottom: 3px solid $blue-primary;
+        }
+      }
+    }
+  }
+}
+
+@media (max-width:  #{get-breakpoint(sm)}) {
+}

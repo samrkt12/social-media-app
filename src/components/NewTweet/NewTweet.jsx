@@ -57,30 +57,31 @@ const NewTweet = ({ className }) => {
             {...register("text")}
           />
         </div>
-        <div>
-          {selectedImage && (
-            <div>
-              <img
-                alt="selected image"
-                width={"250px"}
-                src={URL.createObjectURL(selectedImage)}
-              />
-              <br />
-              <button
-                type="button"
-                onClick={() => {
-                  setSelectedImage(null);
-                }}
-              >
-                Remove
-              </button>
-            </div>
-          )}
-        </div>
+
+        {selectedImage && (
+          <div className="image-preview">
+            <img
+              alt="selected image"
+              src={URL.createObjectURL(selectedImage)}
+            />
+            <br />
+            <button
+              type="button"
+              onClick={() => {
+                setSelectedImage(null);
+              }}
+            >
+              Remove
+            </button>
+          </div>
+        )}
         <div className="last">
           <div>
             <label htmlFor="file">
-              <ImageIcon style={{ cursor: "pointer", width: "20px" }} />
+              <div className="attach-image">
+                <ImageIcon className="image-icon" />
+                <span>Upload an Image</span>
+              </div>
               <input
                 type="file"
                 id="file"

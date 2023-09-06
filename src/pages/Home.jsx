@@ -10,7 +10,14 @@ const Home = () => {
   return (
     <div className="homepage">
       <NewTweet />
-      {postLoading ? <p>Loading posts....</p> : <PostsList posts={posts} />}
+      {postLoading ? (
+        <p>Loading posts....</p>
+      ) : (
+        <PostsList
+          posts={posts}
+          emptyText="Time to break the silence and sprinkle some magic onto your feed! 😄📝✨"
+        />
+      )}
     </div>
   );
 };

@@ -16,7 +16,7 @@
           font-weight: $medium-font-weight;
         }
         span {
-          font-family: $medium-font-weight;
+          font-family: $font-family-secondary;
           font-weight: $medium-font-weight;
           font-size: $base-font-size * 0.8;
           color: $dark-gray;
@@ -52,6 +52,89 @@
       height: 12rem;
       object-fit: cover;
       border-radius: $medium-border-radius;
+    }
+  }
+}
+
+@media (max-width:  #{get-breakpoint(sm)}) {
+  .user-card-container {
+    width: 100%;
+    .first {
+      margin-bottom: $base-margin * 0.8;
+      .profile-info {
+        gap: $base-padding * 0.8;
+        .info {
+          p {
+            font-size: $medium-font-size;
+          }
+          span {
+            font-size: $medium-font-size * 0.85;
+          }
+        }
+      }
+      .follow-btn {
+        span {
+          font-size: $medium-font-size * 0.8;
+        }
+      }
+      .unfollow-btn {
+        span {
+          font-size: $medium-font-size * 0.8;
+        }
+      }
+    }
+
+    .second {
+      margin-bottom: 1rem;
+      span {
+        font-size: $medium-font-size;
+      }
+    }
+    .third {
+      img {
+        height: 8.5rem;
+      }
+    }
+  }
+}
+
+@media (max-width:  #{get-breakpoint(xs)}) {
+  .user-card-container {
+    width: 100%;
+    .first {
+      margin-bottom: $base-margin * 0.75;
+      .profile-info {
+        gap: $base-padding * 0.6;
+        .info {
+          span {
+            font-size: $medium-font-size * 0.8;
+          }
+        }
+      }
+      .follow-btn {
+        padding: 5px 10px;
+        span {
+          font-size: $small-font-size * 0.85;
+        }
+      }
+      .unfollow-btn {
+        padding: 8px 12px;
+        span {
+          font-size: $small-font-size * 0.85;
+        }
+      }
+    }
+
+    .second {
+      margin-bottom: 10px;
+      span {
+        font-size: $small-font-size;
+      }
+    }
+    .third {
+      img {
+        height: 6rem;
+      }
     }
   }
 }

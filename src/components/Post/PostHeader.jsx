@@ -41,7 +41,11 @@ const PostHeader = ({ uid, date, postID }) => {
       <Avatar uid={user.id} image={user.displayImg} className="bg-img" />
       <div className="title">
         <p>{user.name}</p>
-        <span>{`${formatDistanceToNow(date)} ago`}</span>
+        <span>
+          {formatDistanceToNow(date) === "less than a minute"
+            ? "just now"
+            : `${formatDistanceToNow(date)} ago`}
+        </span>
       </div>
       {!authLoading && authUser.id === uid && (
         <DeleteBtn onClick={showAlert} isLong />

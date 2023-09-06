@@ -4,7 +4,7 @@ import "./Options.scss";
 
 const Options = ({ options, option, setOption }) => {
   return (
-    <Card className="options">
+    <Card className="options component1">
       <ul>
         {options.map((opt) => (
           <li
