@@ -8,6 +8,8 @@ import FavoriteIcon from "@mui/icons-material/Favorite";
 import { useDeleteComment, useToggleCommentLike } from "../../hooks/comments";
 import Avatar from "../Avatar/Avatar";
 import AlertOverlay from "../UI/AlertOverlay";
+import Card from "../UI/Card";
+import LoadingSpinner from "../UI/LoadingSpinner";
 
 const question = "Are you sure want to delete this comment?";
 
@@ -37,7 +39,19 @@ const Comment = ({ comment }) => {
     await deleteComment(commentID);
   };
 
-  if (userLoading) return <p>Loading ...</p>;
+  if (userLoading)
+    return (
+      <Card
+        style={{
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          gap: "1rem",
+        }}
+      >
+        <LoadingSpinner w="20px" h="20px" text="Loading..." color="green" />
+      </Card>
+    );
 
   return (
     <div className="comment">

@@ -45,23 +45,3 @@ const NewComment = ({ post }) => {
 };
 
 export default NewComment;
-
-{
-  /* <label htmlFor="post-media">
-        <ImageOutlinedIcon
-          style={{
-            cursor: "pointer",
-            width: "20px",
-            height: "100%",
-            color: "#BDBDBD",
-          }}
-        />
-        <input
-          type="file"
-          id="post-media"
-          style={{ display: "none" }}
-          name="image"
-          accept="image/*"
-        />
-      </label> */
-}

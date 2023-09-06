@@ -1,8 +1,28 @@
 import React from "react";
 import { useAuth } from "../../hooks/auth";
 import "./SettingsDisplay.scss";
+import Card from "../UI/Card";
+import LoadingSpinner from "../UI/LoadingSpinner";
 const SettingsDisplay = ({ setIsFormPage }) => {
   const { user, loading } = useAuth();
+  if (loading)
+    return (
+      <Card
+        style={{
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          gap: "1rem",
+        }}
+      >
+        <LoadingSpinner
+          w="50px"
+          h="50px"
+          text="Loading information..."
+          color="green"
+        />
+      </Card>
+    );
   return (
     <>
       <div className="heading">

@@ -1,7 +1,11 @@
 import React from "react";
 import "./Card.scss";
-const Card = ({ children, className }) => {
-  return <div className={`card ${className ? className : ""}`}>{children}</div>;
+const Card = ({ children, className, style }) => {
+  return (
+    <div className={`card ${className ? className : ""}`} style={style}>
+      {children}
+    </div>
+  );
 };
 
 export default Card;

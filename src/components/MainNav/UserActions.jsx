@@ -6,7 +6,7 @@ import SettingsIcon from "@mui/icons-material/Settings";
 import LogoutIcon from "@mui/icons-material/Logout";
 import Card from "../UI/Card";
 import { useAuth, useLogout } from "../../hooks/auth";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import Avatar from "../Avatar/Avatar";
 import "./UserActions.scss";
 
@@ -14,7 +14,7 @@ const UserActions = () => {
   const [isActionsShown, setIsActionsShown] = useState(false);
   const { user, loading: userLoading } = useAuth();
   const { initiateLogout, loading: logoutLoading } = useLogout();
-  const navigate = useNavigate();
+
   return (
     <div className="profile">
       {!userLoading && (

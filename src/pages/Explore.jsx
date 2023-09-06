@@ -1,6 +1,8 @@
 import React, { useState, lazy, Suspense } from "react";
 import { useGetHomePosts } from "../hooks/posts";
 import { useGetAllUsers } from "../hooks/users";
+import LoadingSpinner from "../components/UI/LoadingSpinner";
+import Card from "../components/UI/Card";
 
 const LazyOptions = lazy(() => import("../components/Options/Options"));
 const LazySearchBar = lazy(() => import("../components/SearchBar/SearchBar"));
@@ -33,12 +35,48 @@ const Explore = () => {
 
   return (
     <div className="explore">
-      <Suspense fallback={<div>Loading Options...</div>}>
+      <Suspense
+        fallback={
+          <Card
+            style={{
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              gap: "1rem",
+            }}
+          >
+            <LoadingSpinner
+              w="20px"
+              h="20px"
+              text="Loading options..."
+              color="green"
+            />
+          </Card>
+        }
+      >
         <LazyOptions options={options} option={filter} setOption={setFilter} />
       </Suspense>
 
       <div style={{ width: "100%" }}>
-        <Suspense fallback={<div>Loading SearchBar...</div>}>
+        <Suspense
+          fallback={
+            <Card
+              style={{
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                gap: "1rem",
+              }}
+            >
+              <LoadingSpinner
+                w="20px"
+                h="20px"
+                text="Loading searchbar..."
+                color="green"
+              />
+            </Card>
+          }
+        >
           <LazySearchBar
             searchKeyword={searchKeyword}
             setSearchKeyword={setSearchKeyword}
@@ -46,7 +84,25 @@ const Explore = () => {
           />
         </Suspense>
         {filter === "people" ? (
-          <Suspense fallback={<div>Loading UserCards...</div>}>
+          <Suspense
+            fallback={
+              <Card
+                style={{
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  gap: "1rem",
+                }}
+              >
+                <LoadingSpinner
+                  w="50px"
+                  h="50px"
+                  text="Loading users..."
+                  color="green"
+                />
+              </Card>
+            }
+          >
             <LazyUserCardsList
               users={filteredData}
               loading={usersLoading}
@@ -54,9 +110,41 @@ const Explore = () => {
             />
           </Suspense>
         ) : postLoading ? (
-          <p>Loading posts....</p>
+          <Card
+            style={{
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              gap: "1rem",
+            }}
+          >
+            <LoadingSpinner
+              w="50px"
+              h="50px"
+              text="Getting posts..."
+              color="blue"
+            />
+          </Card>
         ) : (
-          <Suspense fallback={<div>Loading PostsList...</div>}>
+          <Suspense
+            fallback={
+              <Card
+                style={{
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  gap: "1rem",
+                }}
+              >
+                <LoadingSpinner
+                  w="50px"
+                  h="50px"
+                  text="Loading posts..."
+                  color="blue"
+                />
+              </Card>
+            }
+          >
             <LazyPostsList
               posts={filteredData}
               emptyText="Oops! It seems our search engine couldn't find any matching posts. Keep searching, and who knows what treasures you might uncover! 📝🔍✨"

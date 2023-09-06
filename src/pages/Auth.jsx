@@ -5,6 +5,8 @@ import LoginForm from "../components/Form/LoginForm";
 import SignupForm from "../components/Form/SignupForm";
 import { useAuth } from "../hooks/auth";
 import { useNavigate } from "react-router-dom";
+import Card from "../components/UI/Card";
+import LoadingSpinner from "../components/UI/LoadingSpinner";
 const Auth = () => {
   const [isLoginPage, setIsLoginPage] = useState(true);
   const { user, loading } = useAuth();
@@ -15,7 +17,23 @@ const Auth = () => {
   }, [user, loading]);
 
   if (loading) {
-    return <p>Loading...</p>;
+    return (
+      <Card
+        style={{
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          gap: "1rem",
+        }}
+      >
+        <LoadingSpinner
+          w="50px"
+          h="50px"
+          text="Checking authentication..."
+          color="green"
+        />
+      </Card>
+    );
   }
 
   return (

@@ -6,6 +6,8 @@ import { useAuth } from "../../hooks/auth";
 import DeleteBtn from "../UI/DeleteBtn";
 import Avatar from "../Avatar/Avatar";
 import AlertOverlay from "../UI/AlertOverlay";
+import Card from "../UI/Card";
+import LoadingSpinner from "../UI/LoadingSpinner";
 
 const question = "Are you sure want to delete this post?";
 
@@ -27,7 +29,24 @@ const PostHeader = ({ uid, date, postID }) => {
     await deletePost(postID);
   };
 
-  if (loading) return <p>Loading user...</p>;
+  if (loading)
+    return (
+      <Card
+        style={{
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          gap: "1rem",
+        }}
+      >
+        <LoadingSpinner
+          w="40px"
+          h="40px"
+          text="Loading user..."
+          color="green"
+        />
+      </Card>
+    );
 
   return (
     <div className="owner">

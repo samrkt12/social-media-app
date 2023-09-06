@@ -1,8 +1,26 @@
 import React from "react";
 import UserCard from "./UserCard";
 import Card from "../UI/Card";
+import LoadingSpinner from "../UI/LoadingSpinner";
 const UserCardsList = ({ users, loading, emptyText }) => {
-  if (loading) return <p>loading</p>;
+  if (loading)
+    return (
+      <Card
+        style={{
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          gap: "1rem",
+        }}
+      >
+        <LoadingSpinner
+          w="50px"
+          h="50px"
+          text="Getting users..."
+          color="green"
+        />
+      </Card>
+    );
   return (
     <div className="users-container">
       {users?.length === 0 ? (

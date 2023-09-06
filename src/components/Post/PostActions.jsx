@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React from "react";
 import ModeCommentOutlinedIcon from "@mui/icons-material/ModeCommentOutlined";
 import FavoriteBorderOutlinedIcon from "@mui/icons-material/FavoriteBorderOutlined";
 import BookmarkBorderOutlinedIcon from "@mui/icons-material/BookmarkBorderOutlined";
@@ -6,6 +6,8 @@ import FavoriteIcon from "@mui/icons-material/Favorite";
 import BookmarkIcon from "@mui/icons-material/Bookmark";
 import { useAuth } from "../../hooks/auth";
 import { useTogglePostLike, useTogglePostSave } from "../../hooks/posts";
+import Card from "../UI/Card";
+import LoadingSpinner from "../UI/LoadingSpinner";
 
 export const LikeAction = ({ post }) => {
   const { user, loading: userLoading } = useAuth();
@@ -17,7 +19,19 @@ export const LikeAction = ({ post }) => {
     user?.id
   );
 
-  if (userLoading) return <p>loading</p>;
+  if (userLoading)
+    return (
+      <Card
+        style={{
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          gap: "1rem",
+        }}
+      >
+        <LoadingSpinner w="20px" h="20px" text="Loading..." color="green" />
+      </Card>
+    );
 
   return (
     <button
@@ -47,7 +61,19 @@ export const SaveAction = ({ post }) => {
     user?.id
   );
 
-  if (userLoading) return <p>loading</p>;
+  if (userLoading)
+    return (
+      <Card
+        style={{
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          gap: "1rem",
+        }}
+      >
+        <LoadingSpinner w="20px" h="20px" text="Loading..." color="green" />
+      </Card>
+    );
 
   return (
     <button
