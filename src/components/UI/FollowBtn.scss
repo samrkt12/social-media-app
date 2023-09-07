@@ -1,8 +1,18 @@
+@import "../../variables.scss";
 .follow-btn {
+  padding: 5px 15px;
   display: inline-flex;
+  color: #f2f2f2;
+  background-color: #3882e3;
+  border: 2px solid #3882e3;
+  border-radius: 8px;
   align-items: center;
   gap: 4px;
-  padding: 5px 20px;
+  cursor: pointer;
+  box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.3);
+  transition: background-color 0.3s, color 0.3s, border-color 0.3s,
+    box-shadow 0.3s;
+
   .icon {
     width: 15px;
   }
@@ -10,15 +20,67 @@
     font-weight: 500;
     font-size: 14px;
   }
+  &:hover {
+    background-color: #f2f2f2;
+    color: #3882e3;
+    border-color: #3882e3;
+    box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.4);
+  }
 }
 
 .unfollow-btn {
-  padding: 9px 20px;
+  padding: 7px 15px;
+
   display: inline-flex;
+  color: #3882e3;
+  background-color: #f2f2f2;
+  border: 2px solid #3882e3;
+  border-radius: 8px;
   align-items: center;
   gap: 4px;
+  cursor: pointer;
+  box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.4);
+  transition: background-color 0.3s, color 0.3s, border-color 0.3s,
+    box-shadow 0.3s;
+
   span {
     font-weight: 500;
     font-size: 14px;
+  }
+
+  &:hover {
+    background-color: #3882e3;
+    color: #f2f2f2;
+    border-color: #3882e3;
+    box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.3);
+  }
+}
+
+@media (max-width: #{get-breakpoint(sm)}) {
+  .follow-btn {
+    margin-top: 10px;
+  }
+  .unfollow-btn {
+    margin-top: 10px;
+  }
+}
+
+@media (max-width: #{get-breakpoint(xs)}) {
+  .follow-btn {
+    padding: 3px 12px;
+    .icon {
+      width: 14px;
+    }
+    span {
+      font-weight: 500;
+      font-size: 12px;
+    }
+  }
+
+  .unfollow-btn {
+    padding: 7px 13px;
+    span {
+      font-size: 12px;
+    }
   }
 }

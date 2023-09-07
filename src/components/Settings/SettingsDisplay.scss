@@ -11,6 +11,8 @@
   }
   .profile {
     border-radius: $medium-border-radius;
+    max-width: 100%;
+    width: 48rem;
     box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
     .item {
       border-bottom: 1px solid $light-gray;
@@ -18,6 +20,7 @@
       display: flex;
       align-items: center;
       min-height: 3.5rem;
+      width: 100%;
       &:last-child {
         border-bottom: none;
       }
@@ -29,13 +32,6 @@
       .ans {
         font-weight: $medium-font-weight;
         font-size: $base-font-size * 1.1;
-      }
-
-      .bio-ans {
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        max-width: 50ch;
       }
     }
   }
@@ -82,6 +78,98 @@
       object-fit: cover;
       width: 100%;
       height: 100%;
+    }
+  }
+}
+
+.bio-container {
+  overflow: hidden;
+
+  .bio-ans {
+    max-width: 100%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+}
+
+@media (max-width:  #{get-breakpoint(sm)}) {
+  .settings-page {
+    width: 100%;
+    .heading {
+      margin: $base-margin * 0.5;
+      padding: $base-padding * 0.5;
+      h1 {
+        font-size: $base-font-size * 1.7;
+      }
+    }
+    .profile {
+      .item {
+        padding: $base-padding * 0.75 $base-padding * 1.1;
+        min-height: 3.5rem;
+        .ques {
+          margin-right: $base-margin * 3.5;
+          font-size: $base-font-size * 0.95;
+        }
+        .ans {
+          font-size: $base-font-size * 1;
+        }
+      }
+    }
+    .profile-header {
+      justify-content: space-between;
+      h2 {
+        font-size: $base-font-size * 1.3;
+      }
+      p {
+        font-size: $medium-font-size * 0.85;
+      }
+      button {
+        font-size: $medium-font-size;
+      }
+    }
+    .dp-container {
+      width: 70px;
+      height: 70px;
+    }
+    .cover-container {
+      max-width: 100%;
+      height: 95px;
+    }
+  }
+}
+
+@media (max-width:  #{get-breakpoint(xs)}) {
+  .settings-page {
+    .heading {
+      margin: $base-margin * 0.5;
+      padding: $base-padding * 0.5;
+      h1 {
+        font-size: $base-font-size * 1.4;
+      }
+    }
+    .profile {
+      .item {
+        padding: $base-padding * 0.75 $base-padding * 0.6;
+        .ques {
+          margin-right: $base-margin * 2;
+          font-size: $medium-font-size * 0.85;
+        }
+        .ans {
+          font-size: $medium-font-size * 0.95;
+        }
+      }
+    }
+    .profile-header {
+      h2 {
+        font-size: $base-font-size * 1.1;
+      }
+      p {
+        display: none;
+      }
+      button {
+        font-size: $small-font-size;
+      }
     }
   }
 }

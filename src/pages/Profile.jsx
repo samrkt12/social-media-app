@@ -33,7 +33,12 @@ const Profile = () => {
   return (
     <div className="profile-page">
       {!userLoading && (
-        <img src={user?.coverImg} className="bg-cover" alt="user-cover-pic" />
+        <img
+          src={user?.coverImg}
+          className="bg-cover"
+          alt="user-cover-pic"
+          loading="lazy"
+        />
       )}
       <div className="top">{!userLoading && <ProfileInfo user={user} />}</div>
       <div className="bottom">

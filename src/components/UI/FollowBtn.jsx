@@ -9,7 +9,7 @@ const FollowBtn = ({ onClick, isFollowing }) => {
       onClick={onClick}
     >
       {!isFollowing && <PersonAddIcon className="icon" />}
-      <span>{isFollowing ? "Following" : "Follow"}</span>
+      <span>{isFollowing ? "Unfollow" : "Follow"}</span>
     </Button>
   );
 };

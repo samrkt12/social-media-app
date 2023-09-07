@@ -1,20 +1,21 @@
 @import "../variables.scss";
+
 .login-container {
   background-image: radial-gradient(#ffecd2, #fcb69f);
   display: flex;
   height: 100vh;
+  width: 100%;
   padding: $base-padding * 1.5;
-  justify-content: space-evenly;
+  justify-content: space-around;
   gap: 1rem;
   align-items: center;
+  position: relative;
   .image-container {
     display: flex;
     align-items: center;
     justify-content: center;
-    max-width: 600px;
-    // position: absolute; // @mobile
+    max-width: 520px;
     .login-img {
-      // opacity: 0.1;
       width: 100%;
       height: auto;
       transform: scaleX(-1);
@@ -26,11 +27,13 @@
     align-items: center;
     justify-content: center;
     z-index: 5;
+    min-width: 22rem;
+
     width: 25rem;
     box-shadow: 0px 4px 10px 0px rgba(222, 157, 114, 0.6);
     border-radius: $medium-border-radius * 2;
     background-color: rgba(255, 255, 255, 0.2);
-    padding: $base-padding $base-padding * 2;
+    padding: $base-padding * 2 $base-padding * 2;
     h1 {
       text-align: center;
       color: rgba(242, 80, 25, 0.9);
@@ -148,6 +151,60 @@
         border: none;
         color: rgba(242, 80, 25);
         cursor: pointer;
+      }
+    }
+  }
+}
+
+@media (max-width:  #{get-breakpoint(lg)}) {
+  .login-container {
+    display: flex;
+    padding: $base-padding * 1;
+    justify-content: center;
+    .image-container {
+      max-width: 450px;
+    }
+  }
+}
+
+@media (max-width: #{get-breakpoint(sm)}) {
+  .login-container {
+    .image-container {
+      position: absolute;
+      max-width: 480px;
+      .login-img {
+        opacity: 0.2;
+      }
+    }
+    .form-container {
+      background-color: rgba(240, 213, 194, 0.7);
+    }
+  }
+}
+
+@media (max-width:  #{get-breakpoint(xs)}) {
+  .login-container {
+    .form-container {
+      min-width: 100%;
+
+      width: 100%;
+      padding: $base-padding * 2 $base-padding * 0.9;
+      form {
+        margin-bottom: $base-margin;
+        padding: $base-padding * 0.9;
+      }
+      & > p {
+        font-size: 13px;
+        text-align: center;
+        margin-bottom: 7px;
+      }
+      .change-mode {
+        p {
+          font-size: 13px;
+        }
+        button {
+          font-size: 15px;
+        }
       }
     }
   }

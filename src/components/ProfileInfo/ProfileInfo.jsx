@@ -17,7 +17,7 @@ const ProfileInfo = ({ user }) => {
     <Card className="profile-container">
       <div className="left">
         <Card className="profile-img">
-          <img src={displayImg} alt="profilePic" />
+          <img src={displayImg} alt="profilePic" loading="lazy" />
         </Card>
         <div className="profile-details">
           <div className="data">

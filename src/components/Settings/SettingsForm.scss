@@ -2,6 +2,7 @@
 .settings-page {
   .settings-form {
     width: 40rem;
+    margin-bottom: 1rem;
     .back-btn {
       margin: $base-margin 0;
       background: none;
@@ -41,7 +42,7 @@
           font-weight: $medium-font-weight;
 
           &:focus {
-            outline: 2px solid $blue-primary;
+            outline: 1px solid $blue-primary;
             border: none;
           }
         }
@@ -92,7 +93,7 @@
           margin-bottom: 5px;
           font-weight: $medium-font-weight;
           &:focus {
-            outline: 2px solid $blue-primary;
+            outline: 1px solid $blue-primary;
             border: none;
           }
         }
@@ -133,6 +134,96 @@
         font-weight: $medium-font-weight;
         font-size: $base-font-size;
         padding: $base-padding * 0.5 $base-padding * 1.5;
+      }
+    }
+  }
+}
+
+@media (max-width:  #{get-breakpoint(sm)}) {
+  .settings-page {
+    .settings-form {
+      width: 100%;
+
+      form {
+        padding: $base-padding * 0.2 $base-padding * 1; //this
+        .item {
+          input {
+            padding: $base-padding * 0.8;
+            width: 100%;
+          }
+
+          textarea {
+            width: 100%;
+            padding: $base-padding * 0.8;
+            margin-bottom: 5px;
+          }
+        }
+
+        .form-header {
+          text-align: center;
+          padding: $base-padding * 0.8 0;
+          h3 {
+            font-size: $base-font-size * 1.2;
+          }
+          p {
+            font-size: $base-font-size * 0.85;
+          }
+        }
+        .img-container {
+          justify-content: space-between;
+          .change-btn {
+            padding: $base-padding * 0.7 $base-padding * 0.8;
+            font-size: $medium-font-size * 0.85;
+          }
+        }
+        .save-btn {
+          font-size: $base-font-size * 0.95;
+        }
+      }
+    }
+  }
+}
+
+@media (max-width:  #{get-breakpoint(xs)}) {
+  .settings-page {
+    .settings-form {
+      width: 100%;
+      .back-btn {
+        font-size: $base-font-size * 1.2;
+      }
+      form {
+        padding: $base-padding * 0.2 $base-padding * 0.75;
+        .item {
+          input {
+            padding: $base-padding * 0.75;
+          }
+
+          textarea {
+            width: 100%;
+            padding: $base-padding * 0.75;
+          }
+        }
+
+        .form-header {
+          text-align: center;
+          padding: $base-padding * 0.75 0;
+          h3 {
+            font-size: $base-font-size * 1.1;
+          }
+          p {
+            font-size: $base-font-size * 0.8;
+          }
+        }
+        .img-container {
+          .change-btn {
+            text-align: center;
+            padding: $base-padding * 0.6 $base-padding * 0.7;
+            font-size: $medium-font-size * 0.75;
+          }
+        }
+        .save-btn {
+          font-size: $base-font-size * 0.95;
+        }
       }
     }
   }

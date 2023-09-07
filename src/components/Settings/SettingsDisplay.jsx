@@ -61,7 +61,9 @@ const SettingsDisplay = ({ setIsFormPage }) => {
         </div>
         <div className="item">
           <p className="ques">BIO</p>
-          {!loading && <p className="ans bio-ans">{user.bio}</p>}
+          <div className="bio-container">
+            {!loading && <p className="ans bio-ans">{user.bio}</p>}
+          </div>
         </div>
         <div className="item">
           <p className="ques">EMAIL</p>

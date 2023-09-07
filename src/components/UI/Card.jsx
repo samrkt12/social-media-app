@@ -1,11 +1,15 @@
-import React from "react";
+import React, { forwardRef } from "react";
 import "./Card.scss";
-const Card = ({ children, className, style }) => {
+const Card = forwardRef(({ children, className, style }, ref) => {
   return (
-    <div className={`card ${className ? className : ""}`} style={style}>
+    <div
+      ref={ref}
+      className={`card ${className ? className : ""}`}
+      style={style}
+    >
       {children}
     </div>
   );
-};
+});
 
 export default Card;

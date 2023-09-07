@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import ExpandLessIcon from "@mui/icons-material/ExpandLess";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
@@ -14,6 +14,24 @@ const UserActions = () => {
   const [isActionsShown, setIsActionsShown] = useState(false);
   const { user, loading: userLoading } = useAuth();
   const { initiateLogout, loading: logoutLoading } = useLogout();
+  const userActionsRef = useRef(null);
+
+  useEffect(() => {
+    function handleClickOutside(event) {
+      if (
+        userActionsRef.current &&
+        !userActionsRef.current.contains(event.target)
+      ) {
+        setIsActionsShown(false);
+      }
+    }
+
+    document.addEventListener("click", handleClickOutside);
+
+    return () => {
+      document.removeEventListener("click", handleClickOutside);
+    };
+  }, []);
 
   return (
     <div className="profile">
@@ -29,11 +47,14 @@ const UserActions = () => {
       ) : (
         <ExpandMoreIcon
           className="user-action-arrow"
-          onClick={() => setIsActionsShown(true)}
+          onClick={(event) => {
+            event.stopPropagation();
+            setIsActionsShown(true);
+          }}
         />
       )}
       {isActionsShown ? (
-        <Card className="nav-actions">
+        <Card className="nav-actions" ref={userActionsRef}>
           <ul onClick={() => setIsActionsShown(false)}>
             {!userLoading && (
               <li>
