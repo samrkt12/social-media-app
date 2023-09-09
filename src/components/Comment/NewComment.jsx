@@ -31,7 +31,7 @@ const NewComment = ({ post }) => {
           {...register("text", { required: true })}
         />
         {!userLoading && (
-          <Button className="reply-btn" type="submit">
+          <Button className="reply-btn" type="submit" ariaLabel="Submit Reply">
             {commentLoading ? (
               <LoadingSpinner w="15px" h="14px" />
             ) : (

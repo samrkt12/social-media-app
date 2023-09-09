@@ -98,6 +98,7 @@ const NewTweet = ({ className }) => {
           <Button
             className="story-btn"
             type="submit"
+            aria-label="Submit Tweet"
             disabled={postLoading || loading}
           >
             {postLoading ? <LoadingSpinner w="43px" h="14px" /> : "Tweet"}

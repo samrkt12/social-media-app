@@ -1,0 +1,6 @@
+User-agent: *
+Disallow: /explore
+Disallow: /home
+Disallow: /bookmarks
+Disallow: /profile/
+Disallow: /settings
