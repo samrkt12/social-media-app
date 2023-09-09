@@ -7,10 +7,12 @@ import Profile from "../pages/Profile";
 import Auth from "../pages/Auth";
 import Protected from "./Protected";
 import Settings from "../pages/Settings";
+import NotFound from "../pages/Error";
 
 export const router = createBrowserRouter([
   {
     path: "/",
+    errorElement: <NotFound />,
     element: (
       <Protected>
         <RootLayout />
