@@ -7,6 +7,7 @@ import { useUpdateUser } from "../../hooks/users";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
+import LoadingSpinner from "../UI/LoadingSpinner";
 
 const SettingsForm = ({ setIsFormPage, user }) => {
   const [selectedDisplayImage, setSelectedDisplayImage] = useState(
@@ -133,7 +134,7 @@ const SettingsForm = ({ setIsFormPage, user }) => {
           <input type="text" name="email" readOnly defaultValue={user.email} />
         </div>
         <Button className="save-btn" type="submit">
-          Save
+          {updateLoading ? <LoadingSpinner w="30px" h="14px" /> : "Save"}
         </Button>
       </form>
     </div>
